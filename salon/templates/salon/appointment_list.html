@@ -1,0 +1,56 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}
+My Appointments - Fresh Cut Barbing Salon
+{% endblock %}
+
+{% block content %}
+
+<h1>My Appointments</h1>
+
+{% if appointments %}
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Booking Ref</th>
+            <th>Full Name</th>
+            <th>Phone</th>
+            <th>Service</th>
+            <th>Barber</th>
+            <th>Date</th>
+            <th>Time Slot</th>
+            <th>Appointment Status</th>
+            <th>Payment Method</th>
+            <th>Payment Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.booking_reference }}</td>
+            <td>{{ appointment.full_name }}</td>
+            <td>{{ appointment.phone }}</td>
+            <td>{{ appointment.service }}</td>
+            <td>{{ appointment.barber }}</td>
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.time }} - {{ appointment.get_end_time }}</td>
+            <td>{{ appointment.status }}</td>
+            <td>{{ appointment.payment_method }}</td>
+            <td>{{ appointment.payment_status }}</td>
+            <td>
+                {% if appointment.status == 'Pending' or appointment.status == 'Approved' %}
+                    <form method="POST" action="{% url 'cancel_appointment' appointment.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Cancel</button>
+                    </form>
+                {% else %}
+                    No action
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>You have not booked any appointments yet.</p>
+{% endif %}
+
+{% endblock %}

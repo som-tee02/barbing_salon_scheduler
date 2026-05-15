@@ -1,0 +1,27 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}
+Services - Fresh Cut Barbing Salon
+{% endblock %}
+
+{% block content %}
+
+<h1>Our Barbing Services</h1>
+
+{% if services %}
+    <ul>
+        {% for service in services %}
+            <li>
+                <strong>{{ service.name }}</strong><br>
+                Price: ₦{{ service.price }}<br>
+                Duration: {{ service.duration_minutes }} minutes<br>
+                {{ service.description }}
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No services have been added yet.</p>
+{% endif %}
+
+{% endblock %}

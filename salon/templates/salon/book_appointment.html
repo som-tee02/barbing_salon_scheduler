@@ -1,0 +1,19 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}
+Book Appointment - Fresh Cut Barbing Salon
+{% endblock %}
+
+{% block content %}
+
+<h1>Book an Appointment</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Book Now</button>
+</form>
+
+{% endblock %}

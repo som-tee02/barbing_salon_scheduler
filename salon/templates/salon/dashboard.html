@@ -1,0 +1,42 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}
+Dashboard - Fresh Cut Barbing Salon
+{% endblock %}
+
+{% block content %}
+
+<h1>Customer Dashboard</h1>
+
+<h2>Welcome, {{ user.username }}</h2>
+
+<h3>Appointment Summary</h3>
+
+<ul>
+    <li>Total Appointments: {{ total_appointments }}</li>
+    <li>Pending Appointments: {{ pending_appointments }}</li>
+    <li>Approved Appointments: {{ approved_appointments }}</li>
+    <li>Cancelled Appointments: {{ cancelled_appointments }}</li>
+    <li>Completed Appointments: {{ completed_appointments }}</li>
+</ul>
+
+<h3>Latest Appointment</h3>
+
+{% if latest_appointment %}
+    <p><strong>Booking Reference:</strong> {{ latest_appointment.booking_reference }}</p>
+    <p><strong>Service:</strong> {{ latest_appointment.service }}</p>
+    <p><strong>Barber:</strong> {{ latest_appointment.barber }}</p>
+    <p><strong>Date:</strong> {{ latest_appointment.date }}</p>
+    <p><strong>Time:</strong> {{ latest_appointment.time }} - {{ latest_appointment.get_end_time }}</p>
+    <p><strong>Status:</strong> {{ latest_appointment.status }}</p>
+    <p><strong>Payment Status:</strong> {{ latest_appointment.payment_status }}</p>
+{% else %}
+    <p>You have not booked any appointments yet.</p>
+{% endif %}
+
+<p>
+    <a href="/book/">Book New Appointment</a>
+    <a href="/appointments/">My Appointments</a>
+</p>
+
+{% endblock %}

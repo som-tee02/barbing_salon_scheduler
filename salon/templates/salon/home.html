@@ -1,0 +1,54 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}
+Home - Fresh Cut Barbing Salon
+{% endblock %}
+
+{% block content %}
+
+<h1>Book Your Next Fresh Cut Easily</h1>
+
+<p>
+    Welcome to Fresh Cut Barbing Salon, a modern appointment scheduling system
+    for haircut, beard grooming, hair dyeing, and children haircut services.
+</p>
+
+<p>
+    Customers can create an account, choose a service, select a barber,
+    book an appointment, and track appointment status online.
+</p>
+
+{% if user.is_authenticated %}
+    <p>Welcome back, {{ user.username }}.</p>
+
+    <p>
+        Use the navigation menu above to book an appointment, view your dashboard,
+        or check your appointments.
+    </p>
+{% else %}
+    <p>
+        Create an account or login to book and manage your appointments.
+    </p>
+
+    <a href="/register/">Create Account</a>
+    <br><br>
+    <a href="/login/">Login</a>
+{% endif %}
+
+<h2>Our Popular Services</h2>
+
+<div class="service-grid">
+    {% for service in services %}
+        <div class="service-card">
+            <h3>{{ service.name }}</h3>
+            <p class="price">₦{{ service.price }}</p>
+            <p>Duration: {{ service.duration_minutes }} minutes</p>
+            <p>{{ service.description }}</p>
+        </div>
+    {% empty %}
+        <p>No services available yet.</p>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

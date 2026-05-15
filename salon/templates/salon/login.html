@@ -1,0 +1,22 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}
+Login - Fresh Cut Barbing Salon
+{% endblock %}
+
+{% block content %}
+
+<h1>Customer Login</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Login</button>
+</form>
+
+<p>Don't have an account?</p>
+<a href="/register/">Create Account</a>
+
+{% endblock %}
