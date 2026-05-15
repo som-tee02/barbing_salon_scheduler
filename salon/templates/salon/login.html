@@ -6,17 +6,21 @@ Login - Fresh Cut Barbing Salon
 
 {% block content %}
 
-<h1>Customer Login</h1>
+<div class="form-card">
+    <h1>Customer Login</h1>
 
-<form method="POST">
-    {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
 
-    {{ form.as_p }}
+        {{ form.as_p }}
 
-    <button type="submit">Login</button>
-</form>
+        <button type="submit">Login</button>
+    </form>
 
-<p>Don't have an account?</p>
-<a href="/register/">Create Account</a>
+    <p class="form-help">
+        Don't have an account?
+        <a href="/register/">Create Account</a>
+    </p>
+</div>
 
 {% endblock %}

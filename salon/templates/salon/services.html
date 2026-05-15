@@ -8,20 +8,21 @@ Services - Fresh Cut Barbing Salon
 
 <h1>Our Barbing Services</h1>
 
-{% if services %}
-    <ul>
-        {% for service in services %}
-            <li>
-                <strong>{{ service.name }}</strong><br>
-                Price: ₦{{ service.price }}<br>
-                Duration: {{ service.duration_minutes }} minutes<br>
-                {{ service.description }}
-            </li>
-            <br>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No services have been added yet.</p>
-{% endif %}
+<p>
+    Explore our available salon services, prices, and estimated duration.
+</p>
+
+<div class="service-grid">
+    {% for service in services %}
+        <div class="service-card">
+            <h3>{{ service.name }}</h3>
+            <p class="price">₦{{ service.price }}</p>
+            <p><strong>Duration:</strong> {{ service.duration_minutes }} minutes</p>
+            <p>{{ service.description }}</p>
+        </div>
+    {% empty %}
+        <p>No services have been added yet.</p>
+    {% endfor %}
+</div>
 
 {% endblock %}

@@ -6,17 +6,21 @@ Create Account - Fresh Cut Barbing Salon
 
 {% block content %}
 
-<h1>Create Customer Account</h1>
+<div class="form-card">
+    <h1>Create Customer Account</h1>
 
-<form method="POST">
-    {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
 
-    {{ form.as_p }}
+        {{ form.as_p }}
 
-    <button type="submit">Register</button>
-</form>
+        <button type="submit">Register</button>
+    </form>
 
-<p>Already have an account?</p>
-<a href="/login/">Login</a>
+    <p class="form-help">
+        Already have an account?
+        <a href="/login/">Login</a>
+    </p>
+</div>
 
 {% endblock %}

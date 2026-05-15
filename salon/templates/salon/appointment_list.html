@@ -33,9 +33,17 @@ My Appointments - Fresh Cut Barbing Salon
             <td>{{ appointment.barber }}</td>
             <td>{{ appointment.date }}</td>
             <td>{{ appointment.time }} - {{ appointment.get_end_time }}</td>
-            <td>{{ appointment.status }}</td>
+            <td>
+                <span class="badge status-{{ appointment.status|lower }}">
+                    {{ appointment.status }}
+                </span>
+            </td>
             <td>{{ appointment.payment_method }}</td>
-            <td>{{ appointment.payment_status }}</td>
+            <td>
+                <span class="badge payment-{{ appointment.payment_status|lower }}">
+                    {{ appointment.payment_status }}
+                </span>
+            </td>
             <td>
                 {% if appointment.status == 'Pending' or appointment.status == 'Approved' %}
                     <form method="POST" action="{% url 'cancel_appointment' appointment.id %}">

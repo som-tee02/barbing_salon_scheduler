@@ -6,14 +6,16 @@ Book Appointment - Fresh Cut Barbing Salon
 
 {% block content %}
 
-<h1>Book an Appointment</h1>
+<div class="form-card">
+    <h1>Book an Appointment</h1>
 
-<form method="POST">
-    {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
 
-    {{ form.as_p }}
+        {{ form.as_p }}
 
-    <button type="submit">Book Now</button>
-</form>
+        <button type="submit">Book Now</button>
+    </form>
+</div>
 
 {% endblock %}
