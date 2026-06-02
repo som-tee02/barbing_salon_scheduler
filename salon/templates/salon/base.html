@@ -4,47 +4,52 @@
 <html>
 <head>
     <title>{% block title %}Fresh Cut Barbing Salon{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'salon/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'salon/css/style.css' %}?v=4">
 </head>
 <body>
 
     <header>
-        <h2>Fresh Cut Barbing Salon</h2>
+        <div class="navbar">
+            <div class="brand">
+                <span class="brand-icon">✂</span>
 
-        <nav>
-            <a href="/">Home</a>
-            <a href="/services/">Services</a>
-            <a href="/about/">About / Contact</a>
+                <div>
+                    <h2>Fresh Cut</h2>
+                    <small>Barbing Salon</small>
+                </div>
+            </div>
 
-            {% if user.is_authenticated %}
-                <a href="/dashboard/">Dashboard</a>
-                <a href="/book/">Book Appointment</a>
-                <a href="/appointments/">My Appointments</a>
-                <a href="/logout/">Logout</a>
-            {% else %}
-                <a href="/register/">Register</a>
-                <a href="/login/">Login</a>
-            {% endif %}
-        </nav>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/services/">Services</a>
+                <a href="/about/">About</a>
+
+                {% if user.is_authenticated %}
+                    <a href="/dashboard/">Dashboard</a>
+                    <a href="/book/">Book</a>
+                    <a href="/appointments/">Appointments</a>
+                    <a href="/logout/">Logout</a>
+                {% else %}
+                    <a href="/register/">Create Account</a>
+                    <a href="/login/">Login</a>
+                {% endif %}
+            </nav>
+        </div>
     </header>
 
-    <hr>
-
-    {% if messages %}
-        {% for message in messages %}
-            <div class="message">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-
     <main>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
         {% block content %}
 
         {% endblock %}
     </main>
-
-    <hr>
 
     <footer>
         <p>&copy; 2026 Fresh Cut Barbing Salon. All rights reserved.</p>
@@ -58,7 +63,7 @@
             messages.forEach(function(message) {
                 message.style.opacity = '0';
 
-                setTimeout(function (){
+                setTimeout(function() {
                     message.style.display = 'none';
                 }, 500);
             });
