@@ -5,13 +5,21 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import AppointmentForm
-from .models import Appointment, Service
+from .models import Appointment, Service, Barber
 
 
 def home(request):
     services = Service.objects.all()
-    return render(request, 'salon/home.html', {'services': services})
+    barbers = Barber.objects.all()
 
+    context = {
+        'services': services,
+        'barbers': barbers,
+        'service_count': services.count(),
+        'barber_count': barbers.count(),
+    }
+
+    return render(request, 'salon/home.html', context)
 
 def services(request):
     services = Service.objects.all()

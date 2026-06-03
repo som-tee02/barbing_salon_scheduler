@@ -8,13 +8,13 @@ Home - Fresh Cut Barbing Salon
 
 <section class="hero-section">
     <div class="hero-content">
-        <p class="hero-tag">Premium Barbing Experience</p>
+        <p class="hero-tag">Premium Grooming Experience</p>
 
-        <h1>Fresh Cuts, Easy Booking, Zero Stress.</h1>
+        <h1>Luxury Cuts, Seamless Booking.</h1>
 
         <p class="hero-text">
             Book your haircut, beard trim, hair dyeing, or grooming session online.
-            Choose your preferred barber, select a time, and track your appointment status easily.
+            Choose your preferred barber, select a time, and track your appointment status with ease.
         </p>
 
         <div class="hero-buttons">
@@ -29,29 +29,75 @@ Home - Fresh Cut Barbing Salon
     </div>
 </section>
 
+<section class="premium-stats">
+    <div>
+        <h2>{{ service_count }}+</h2>
+        <p>Premium Services</p>
+    </div>
+
+    <div>
+        <h2>{{ barber_count }}+</h2>
+        <p>Expert Barbers</p>
+    </div>
+
+    <div>
+        <h2>100%</h2>
+        <p>Online Booking</p>
+    </div>
+
+    <div>
+        <h2>Fast</h2>
+        <p>Admin Approval</p>
+    </div>
+</section>
+
+<section class="premium-strip">
+    <div>
+        <h3>Online Booking</h3>
+        <p>No queues. Book from anywhere.</p>
+    </div>
+
+    <div>
+        <h3>Preferred Barber</h3>
+        <p>Select your barber before arrival.</p>
+    </div>
+
+    <div>
+        <h3>Status Tracking</h3>
+        <p>Track approval and payment status.</p>
+    </div>
+</section>
+
 <section class="intro-section">
-    <h2>Why Choose Fresh Cut?</h2>
+    <p class="section-label">Why Choose Us</p>
+
+    <h2>Built for Comfort, Speed, and Style</h2>
 
     <div class="feature-grid">
         <div class="feature-card">
-            <h3>Easy Booking</h3>
-            <p>Book appointments online without waiting in queues.</p>
+            <div class="feature-icon">✂</div>
+            <h3>Professional Grooming</h3>
+            <p>Enjoy clean haircut, beard trim, dyeing, and styling services from experienced barbers.</p>
         </div>
 
         <div class="feature-card">
-            <h3>Choose Barber</h3>
-            <p>Select your preferred barber based on availability.</p>
+            <div class="feature-icon">⏱</div>
+            <h3>Smart Scheduling</h3>
+            <p>The system checks time conflicts, service duration, and salon opening hours automatically.</p>
         </div>
 
         <div class="feature-card">
-            <h3>Track Status</h3>
-            <p>View your appointment status, payment status, and booking reference.</p>
+            <div class="feature-icon">✓</div>
+            <h3>Easy Management</h3>
+            <p>Customers can view bookings while the admin manages approval, payment, and appointment status.</p>
         </div>
     </div>
 </section>
 
 <section>
-    <h2>Our Popular Services</h2>
+    <p class="section-label">Our Services</p>
+
+    <h2>Popular Grooming Services</h2>
 
     <div class="service-grid">
         {% for service in services %}
@@ -65,6 +111,62 @@ Home - Fresh Cut Barbing Salon
             <p>No services available yet.</p>
         {% endfor %}
     </div>
+</section>
+
+<section class="barber-section">
+    <p class="section-label">Meet Our Barbers</p>
+
+    <h2>Skilled Hands Behind Every Fresh Cut</h2>
+
+    <div class="barber-grid">
+        {% for barber in barbers %}
+            <div class="barber-card">
+                <div class="barber-avatar">✂</div>
+                <h3>{{ barber.name }}</h3>
+                <p>{{ barber.specialty }}</p>
+                <small>{{ barber.phone }}</small>
+            </div>
+        {% empty %}
+            <p>No barbers available yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <p class="section-label">Client Reviews</p>
+
+    <h2>What Customers Say</h2>
+
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <p>“The booking process was smooth and fast. I knew my barber and time before arriving.”</p>
+            <h4>— Chinedu</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p>“Clean cuts, premium service, and no waiting around. The system feels professional.”</p>
+            <h4>— Emeka</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p>“I like that I can track approval and payment status from my account.”</p>
+            <h4>— David</h4>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <h2>Ready for Your Next Fresh Cut?</h2>
+
+    <p>
+        Create an account, choose your service, pick your barber, and reserve your appointment in minutes.
+    </p>
+
+    {% if user.is_authenticated %}
+        <a href="/book/">Book Now</a>
+    {% else %}
+        <a href="/register/">Create Account</a>
+    {% endif %}
 </section>
 
 {% endblock %}

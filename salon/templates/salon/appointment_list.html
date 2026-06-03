@@ -6,67 +6,131 @@ My Appointments - Fresh Cut Barbing Salon
 
 {% block content %}
 
-<h1>My Appointments</h1>
+<section class="appointments-hero">
+    <p class="section-label">Booking Records</p>
+    <h1>My Appointments</h1>
+    <p>
+        View your booking reference, service details, barber, appointment status,
+        payment status, and cancel appointments when necessary.
+    </p>
+</section>
 
 {% if appointments %}
-    <div class="table-container">
-        <table>
-            <tr>
-                <th>Booking Ref</th>
-                <th>Full Name</th>
-                <th>Phone</th>
-                <th>Service</th>
-                <th>Barber</th>
-                <th>Date</th>
-                <th>Time Slot</th>
-                <th>Appointment Status</th>
-                <th>Payment Method</th>
-                <th>Payment Status</th>
-                <th>Action</th>
-            </tr>
+    <div class="appointment-card-list">
+        {% for appointment in appointments %}
+            <div class="appointment-record-card">
+                <div class="appointment-record-header">
+                    <div>
+                        <p class="record-label">Booking Reference</p>
+                        <h2>{{ appointment.booking_reference }}</h2>
+                    </div>
 
-            {% for appointment in appointments %}
-            <tr>
-                <td>{{ appointment.booking_reference }}</td>
-                <td>{{ appointment.full_name }}</td>
-                <td>{{ appointment.phone }}</td>
-                <td>{{ appointment.service }}</td>
-                <td>{{ appointment.barber }}</td>
-                <td>{{ appointment.date }}</td>
-                <td>{{ appointment.time }} - {{ appointment.get_end_time }}</td>
+                    <div class="record-status-group">
+                        <span class="badge status-{{ appointment.status|lower }}">
+                            {{ appointment.status }}
+                        </span>
 
-                <td>
-                    <span class="badge status-{{ appointment.status|lower }}">
-                        {{ appointment.status }}
-                    </span>
-                </td>
+                        <span class="badge payment-{{ appointment.payment_status|lower }}">
+                            {{ appointment.payment_status }}
+                        </span>
+                    </div>
+                </div>
 
-                <td>{{ appointment.payment_method }}</td>
+                <div class="appointment-detail-grid">
+                    <div>
+                        <strong>Full Name</strong>
+                        <p>{{ appointment.full_name }}</p>
+                    </div>
 
-                <td>
-                    <span class="badge payment-{{ appointment.payment_status|lower }}">
-                        {{ appointment.payment_status }}
-                    </span>
-                </td>
+                    <div>
+                        <strong>Phone</strong>
+                        <p>{{ appointment.phone }}</p>
+                    </div>
 
-                <td>
+                    <div>
+                        <strong>Service</strong>
+                        <p>{{ appointment.service }}</p>
+                    </div>
+
+                    <div>
+                        <strong>Barber</strong>
+                        <p>{{ appointment.barber }}</p>
+                    </div>
+
+                    <div>
+                        <strong>Date</strong>
+                        <p>{{ appointment.date }}</p>
+                    </div>
+
+                    <div>
+                        <strong>Time Slot</strong>
+                        <p>{{ appointment.time }} - {{ appointment.get_end_time }}</p>
+                    </div>
+
+                    <div>
+                        <strong>Payment Method</strong>
+                        <p>{{ appointment.payment_method }}</p>
+                    </div>
+                </div>
+
+                <div class="timeline-box">
+                    <p class="record-label">Appointment Progress</p>
+
+                    <div class="status-timeline">
+                        <div class="timeline-step active">
+                            <span>1</span>
+                            <p>Booked</p>
+                        </div>
+
+                        <div class="timeline-line"></div>
+
+                        <div class="timeline-step {% if appointment.status == 'Approved' or appointment.status == 'Completed' %}active{% endif %}">
+                            <span>2</span>
+                            <p>Approved</p>
+                        </div>
+
+                        <div class="timeline-line"></div>
+
+                        <div class="timeline-step {% if appointment.payment_status == 'Paid' %}active{% endif %}">
+                            <span>3</span>
+                            <p>Paid</p>
+                        </div>
+
+                        <div class="timeline-line"></div>
+
+                        <div class="timeline-step {% if appointment.status == 'Completed' %}active{% endif %}">
+                            <span>4</span>
+                            <p>Completed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="appointment-actions">
                     {% if appointment.status == 'Pending' or appointment.status == 'Approved' %}
                         <form method="POST" action="{% url 'cancel_appointment' appointment.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="cancel-btn" style="background: #dc2626 !important; color:white !important;">
-                                Cancel
+                            <button type="submit" class="cancel-btn" style="background:#dc2626 !important; color:white !important;">
+                                Cancel Appointment
                             </button>
                         </form>
                     {% else %}
-                        No action
+                        <span class="no-action">No action available</span>
                     {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% else %}
-    <p>You have not booked any appointments yet.</p>
+    <div class="empty-state">
+        <h2>No Appointments Yet</h2>
+        <p>You have not booked any appointments. Start by choosing a service and selecting your preferred barber.</p>
+        <a href="/book/">Book Your First Appointment</a>
+    </div>
 {% endif %}
+
+<div class="action-links">
+    <a href="/dashboard/">Back to Dashboard</a>
+    <a href="/book/">Book New Appointment</a>
+</div>
 
 {% endblock %}

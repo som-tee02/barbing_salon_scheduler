@@ -6,9 +6,11 @@ Dashboard - Fresh Cut Barbing Salon
 
 {% block content %}
 
-<h1>Customer Dashboard</h1>
-
-<p class="welcome-text">Welcome back, {{ user.username }}. Here is your appointment summary.</p>
+<section class="dashboard-hero">
+    <p class="section-label">Customer Portal</p>
+    <h1>Welcome back, {{ user.username }}</h1>
+    <p>Manage your bookings, track appointment status, and stay updated on your grooming schedule.</p>
+</section>
 
 <div class="dashboard-grid">
     <div class="dashboard-card">
@@ -40,18 +42,20 @@ Dashboard - Fresh Cut Barbing Salon
 <h2>Latest Appointment</h2>
 
 {% if latest_appointment %}
-    <div class="latest-card">
+    <div class="latest-card premium-latest">
         <p><strong>Booking Reference:</strong> {{ latest_appointment.booking_reference }}</p>
         <p><strong>Service:</strong> {{ latest_appointment.service }}</p>
         <p><strong>Barber:</strong> {{ latest_appointment.barber }}</p>
         <p><strong>Date:</strong> {{ latest_appointment.date }}</p>
         <p><strong>Time Slot:</strong> {{ latest_appointment.time }} - {{ latest_appointment.get_end_time }}</p>
+
         <p>
             <strong>Appointment Status:</strong>
             <span class="badge status-{{ latest_appointment.status|lower }}">
                 {{ latest_appointment.status }}
             </span>
         </p>
+
         <p>
             <strong>Payment Status:</strong>
             <span class="badge payment-{{ latest_appointment.payment_status|lower }}">
