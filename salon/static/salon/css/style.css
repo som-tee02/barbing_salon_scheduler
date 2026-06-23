@@ -1222,3 +1222,211 @@ nav a.active-link {
         font-size: 22px;
     }
 }
+
+/* Strong Mobile Responsiveness Fix */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    header {
+        position: static;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 18px 20px;
+    }
+
+    .brand {
+        width: 100%;
+    }
+
+    nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 13px;
+        padding-bottom: 4px;
+    }
+
+    main {
+        width: 100%;
+        padding: 24px 16px;
+    }
+
+    .hero-section,
+    .dashboard-hero,
+    .appointments-hero {
+        padding: 35px 20px;
+        border-radius: 22px;
+    }
+
+    .hero-content h1,
+    .dashboard-hero h1,
+    .appointments-hero h1 {
+        font-size: 34px;
+        line-height: 1.1;
+    }
+
+    .hero-text,
+    .dashboard-hero p,
+    .appointments-hero p {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-btn,
+    .cta-section a,
+    .action-links a,
+    .empty-state a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .premium-stats,
+    .premium-strip,
+    .feature-grid,
+    .service-grid,
+    .barber-grid,
+    .testimonial-grid,
+    .dashboard-grid,
+    .appointment-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .premium-strip {
+        padding: 20px;
+    }
+
+    .feature-card,
+    .service-card,
+    .barber-card,
+    .testimonial-card,
+    .dashboard-card,
+    .appointment-record-card,
+    .empty-state,
+    .form-card {
+        padding: 22px;
+        border-radius: 22px;
+    }
+
+    .appointment-record-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .record-status-group {
+        justify-content: flex-start;
+    }
+
+    .appointment-record-header h2 {
+        font-size: 22px;
+        word-break: break-word;
+    }
+
+    .status-timeline {
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+
+    .timeline-step {
+        min-width: 80px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 850px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    footer {
+        padding: 26px 16px;
+        font-size: 14px;
+    }
+
+    .floating-book-btn {
+        right: 14px;
+        bottom: 18px;
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+
+    .back-to-top {
+        left: 14px;
+        bottom: 18px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand h2 {
+        font-size: 20px;
+    }
+
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 21px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero-content h1,
+    .dashboard-hero h1,
+    .appointments-hero h1 {
+        font-size: 29px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .premium-stats h2 {
+        font-size: 30px;
+    }
+
+    .appointment-record-card {
+        padding: 18px;
+    }
+
+    .timeline-box {
+        padding: 18px;
+    }
+}
